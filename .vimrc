@@ -8,6 +8,7 @@ set smartindent
 set showmatch
 set laststatus=2
 set title
+set wildmenu
 
 "タブ文字の設定
 set list listchars=tab:\▶\-,eol:↵
