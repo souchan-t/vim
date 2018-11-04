@@ -96,6 +96,20 @@ nnoremap <silent><F4> :sp<CR>:VimShell<CR>
 " Nim言語用プラグイン
 call dein#add('zah/nim.vim')
 
+" ステータスラインプラグイン
+call dein#add('itchyny/lightline.vim')
+
+" 文法チェックなど
+"let g:ale_completion_enabled = 1
+call dein#add('w0rp/ale')
+let g:ale_sign_error = '×'
+let g:ale_sign_warning = '⚠'
+let g:ale_sign_column_always = 1
+"let g:ale_linters = {
+"\	'python':['flake8'],
+"\	}
+
+
 call dein#end()
 "--------------------------------------------------------------------
 
