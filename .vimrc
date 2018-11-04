@@ -33,8 +33,9 @@ set splitbelow
 "シンタックスの色付け
 syntax on
 
-"Shift-TABでタブ切り替え
+"Shift-TAB,Shift-tでタブ切り替え
 nnoremap <s-TAB> gt
+nnoremap <s-t> gt
 "Shift-wでウィンドウ切り替え
 nnoremap <s-w> <C-w>w
 inoremap <s-Down> <C-c>v
@@ -92,6 +93,8 @@ call dein#add('Shougo/vimproc.vim',{'build':'make'})
 call dein#add('Shougo/vimshell.vim')
 nnoremap <silent><F4> :sp<CR>:VimShell<CR>
 
+" Nim言語用プラグイン
+call dein#add('zah/nim.vim')
 
 call dein#end()
 "--------------------------------------------------------------------
