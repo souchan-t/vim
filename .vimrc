@@ -41,6 +41,8 @@ nnoremap <s-w> <C-w>w
 inoremap <s-Down> <C-c>v
 inoremap <C-r> <ESC>:%s/[old]/[new]/gc
 
+" 検索はベリーマジックにする
+nnoremap / /\v
 
 if &compatible
 	set nocompatible
@@ -53,21 +55,34 @@ set runtimepath+=~/.vim/dein.vim
 "-------------------------------------------------------------
 call dein#begin(expand('~/.vim/dein'))
 
-
 "プラグイン管理
 call dein#add('Shougo/dein.vim')
 
 " 補完プラグイン
-call dein#add('Shougo/neocomplete.vim')
-let g:neocomplete#enable_at_startup = 1
-let g:neocomplete#enable_ignore_case = 1
-let g:neocomplete#enable_smart_case = 1
-if !exists('g:neocomplete#keyword_patterns')
-  let g:neocomplete#keyword_patterns = {}
+"call dein#add('Shougo/neocomplete.vim')
+"let g:neocomplete#enable_at_startup = 1
+"let g:neocomplete#enable_ignore_case = 1
+"let g:neocomplete#enable_smart_case = 1
+"if !exists('g:neocomplete#keyword_patterns')
+"  let g:neocomplete#keyword_patterns = {}
+"endif
+"let g:neocomplete#keyword_patterns._ = '\h\w*'
+inoremap <expr><TAB> pumvisible() ? "\<C-n>" : "<\<TAB>"
+inoremap <expr><s-TAB> pumvisible() ? "\<C-p>" : "<\<S-TAB>"
+
+" 補完プラグイン
+call dein#add('Shougo/deoplete.nvim')
+if !has('nvim')
+	call dein#add('roxma/nvim-yarp')
+	call dein#add('roxma/vim-hug-neovim-rpc')
 endif
-let g:neocomplete#keyword_patterns._ = '\h\w*'
-"inoremap <expr><TAB> pumvisible() ? "\<C-n>" : "<\<TAB>"
-"inoremap <expr><s-TAB> pumvisible() ? "\<C-p>" : "<\<S-TAB>"
+let g:deoplete#enable_at_startup = 1
+
+call dein#add('Shougo/neosnippet.vim')
+call dein#add('Shougo/neosnippet-snippets')
+call dein#add('Shougo/neco-syntax')
+call dein#add('Shougo/deoplete-clangx')
+call dein#add('zchee/deoplete-jedi')
 
 "ファイル表示プラグイン
 call dein#add('scrooloose/nerdtree')
@@ -75,18 +90,20 @@ nnoremap <silent><F3> :NERDTreeToggle<CR>
 
 "カラーマップのプラグイン
 call dein#add('joshdick/onedark.vim')
-let g:onedark_termcolor=16
+let g:onedark_termcolor=256
+set termguicolors
 colorscheme onedark
+set background=dark
 
 "各種ソースの実行プラグイン
 call dein#add('thinca/vim-quickrun')
 nnoremap <silent><F5> :QuickRun<CR>
 
 "Python補完プラグイン
-call dein#add('davidhalter/jedi-vim')
-let g:jedi#completions_command = "<C-Space>"
-let g:jedi#popup_on_dot = 1
-autocmd FileType python setlocal completeopt-=preview
+"call dein#add('davidhalter/jedi-vim')
+"let g:jedi#completions_command = "<C-Space>"
+"let g:jedi#popup_on_dot = 1
+"autocmd FileType python setlocal completeopt-=preview
 
 call dein#add('Shougo/vimproc.vim',{'build':'make'})
 
@@ -96,8 +113,15 @@ nnoremap <silent><F4> :sp<CR>:VimShell<CR>
 " Nim言語用プラグイン
 call dein#add('zah/nim.vim')
 
+" 自動閉じタグ
+call dein#add('alvan/vim-closetag')
+let g:closetag_filenames = '*.html,*.htm,*.jsp,*.ejs'
+
 " ステータスラインプラグイン
 call dein#add('itchyny/lightline.vim')
+
+" ウインドウ幅の変更プラグイン
+call dein#add('shimeji/winresizer')
 
 " 文法チェックなど
 "let g:ale_completion_enabled = 1
@@ -105,6 +129,10 @@ call dein#add('w0rp/ale')
 let g:ale_sign_error = '×'
 let g:ale_sign_warning = '⚠'
 let g:ale_sign_column_always = 1
+let g:ale_lint_on_text_change = 'never'
+let g:ale_lint_on_save = 1
+let g:ale_lint_on_enter = 1
+let g:ale_echo_cursor = 0
 "let g:ale_linters = {
 "\	'python':['flake8'],
 "\	}
@@ -112,4 +140,4 @@ let g:ale_sign_column_always = 1
 
 call dein#end()
 "--------------------------------------------------------------------
-
+syntax on
