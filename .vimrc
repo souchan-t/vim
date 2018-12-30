@@ -16,6 +16,16 @@ set list listchars=tab:\▶\-,eol:↵
 set tabstop=4
 set shiftwidth=4
 
+if has("autocmd")
+	filetype plugin on
+	filetype indent on
+
+	autocmd FileType python         setlocal sw=4 sts=4 ts=4 et
+	autocmd FileType ruby           setlocal sw=2 sts=2 ts=2 et
+	autocmd FileType nim            setlocal sw=2 sts=2 ts=2 et
+endif
+
+
 "検索時大文字小文字を無視
 set ignorecase
 "ただし、検索文字に大文字が含まれていれば区別
@@ -67,8 +77,8 @@ call dein#add('Shougo/dein.vim')
 "  let g:neocomplete#keyword_patterns = {}
 "endif
 "let g:neocomplete#keyword_patterns._ = '\h\w*'
-inoremap <expr><TAB> pumvisible() ? "\<C-n>" : "<\<TAB>"
-inoremap <expr><s-TAB> pumvisible() ? "\<C-p>" : "<\<S-TAB>"
+inoremap <expr><TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
+inoremap <expr><s-TAB> pumvisible() ? "\<C-p>" : "\<S-TAB>"
 
 " 補完プラグイン
 call dein#add('Shougo/deoplete.nvim')
@@ -80,9 +90,18 @@ let g:deoplete#enable_at_startup = 1
 
 call dein#add('Shougo/neosnippet.vim')
 call dein#add('Shougo/neosnippet-snippets')
+imap <C-k> <Plug>(neosnippet_expand_or_jump)
+smap <C-k> <Plug>(neosnippet_expand_or_jump)
+xmap <C-k> <Plug>(neosnippet_expand_target)
+
+smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
+\ "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
+
 call dein#add('Shougo/neco-syntax')
 call dein#add('Shougo/deoplete-clangx')
 call dein#add('zchee/deoplete-jedi')
+
+
 
 "ファイル表示プラグイン
 call dein#add('scrooloose/nerdtree')
@@ -120,8 +139,6 @@ let g:closetag_filenames = '*.html,*.htm,*.jsp,*.ejs'
 " ステータスラインプラグイン
 call dein#add('itchyny/lightline.vim')
 
-" ウインドウ幅の変更プラグイン
-call dein#add('shimeji/winresizer')
 
 " 文法チェックなど
 "let g:ale_completion_enabled = 1
