@@ -11,7 +11,7 @@ set title
 set wildmenu
 
 "タブ文字の設定
-set list listchars=tab:\▶\-,eol:↵
+set list listchars=tab:\>\-,eol:↵
 "set expandtab
 set tabstop=4
 set shiftwidth=4
