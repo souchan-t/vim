@@ -139,6 +139,8 @@ let g:closetag_filenames = '*.html,*.htm,*.jsp,*.ejs'
 " ステータスラインプラグイン
 call dein#add('itchyny/lightline.vim')
 
+" JavaScriptシンタックス
+call dein#add('othree/yajs.vim')
 
 " 文法チェックなど
 "let g:ale_completion_enabled = 1
