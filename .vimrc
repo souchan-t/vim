@@ -1,4 +1,5 @@
 set fenc=utf8
+set ambiwidth=double
 set autoread
 set hidden
 set showcmd
@@ -23,6 +24,8 @@ if has("autocmd")
 	autocmd FileType python         setlocal sw=4 sts=4 ts=4 et
 	autocmd FileType ruby           setlocal sw=2 sts=2 ts=2 et
 	autocmd FileType nim            setlocal sw=2 sts=2 ts=2 et
+	autocmd FileType scala          setlocal sw=2 sts=2 ts=2 et
+	autocmd FileType java           setlocal sw=4 sts=4 ts=4
 endif
 
 
@@ -35,6 +38,7 @@ set incsearch
 set wrapscan
 "検索文字をハイライト
 set hlsearch
+nnoremap <silent><Esc><Esc> :noh<CR>
 
 "新規ウィンドウは右、下に表示
 set splitright
