@@ -55,6 +55,8 @@ nnoremap <s-w> <C-w>w
 inoremap <s-Down> <C-c>v
 inoremap <C-r> <ESC>:%s/[old]/[new]/gc
 
+tnoremap <Esc> <C-\><C-n>
+
 " 検索はベリーマジックにする
 nnoremap / /\v
 
