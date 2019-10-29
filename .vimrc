@@ -148,6 +148,9 @@ call dein#add('itchyny/lightline.vim')
 " JavaScriptシンタックス
 call dein#add('othree/yajs.vim')
 
+" TypeScriptシンタックス
+call dein#add('leafgarland/typescript-vim')
+
 " 文法チェックなど
 "let g:ale_completion_enabled = 1
 call dein#add('w0rp/ale')
