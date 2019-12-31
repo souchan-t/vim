@@ -170,7 +170,7 @@ call dein#add('neoclide/coc.nvim',{'merged':0,'rev':'release'})
 au BufRead,BufNewFile *.sbt set filetype=scala
 
 " TypeScriptシンタックス
-call dein#add('leafgarland/typescript-vim')
+"call dein#add('leafgarland/typescript-vim')
 
 " 文法チェックなど
 "let g:ale_completion_enabled = 1
