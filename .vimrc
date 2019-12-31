@@ -17,6 +17,9 @@ set list listchars=tab:\>\-,eol:↵
 set tabstop=4
 set shiftwidth=4
 
+vnoremap > >gv
+vnoremap < <gv
+
 if has("autocmd")
 	filetype plugin on
 	filetype indent on
@@ -27,6 +30,7 @@ if has("autocmd")
 	autocmd FileType scala          setlocal sw=2 sts=2 ts=2 et
 	autocmd FileType java           setlocal sw=4 sts=4 ts=4
 endif
+
 
 
 "検索時大文字小文字を無視
@@ -114,6 +118,17 @@ nnoremap <silent><F3> :NERDTreeToggle<CR>
 "カラーマップのプラグイン
 call dein#add('joshdick/onedark.vim')
 let g:onedark_termcolor=256
+"colorscheme onedark
+
+call dein#add('tomasr/molokai')
+"colorscheme molokai
+"
+call dein#add('jonathanfilip/vim-lucius')
+colorscheme lucius
+
+call dein#add('jdkanani/vim-material-theme')
+
+
 set termguicolors
 colorscheme onedark
 set background=dark
@@ -142,9 +157,15 @@ let g:closetag_filenames = '*.html,*.htm,*.jsp,*.ejs'
 
 " ステータスラインプラグイン
 call dein#add('itchyny/lightline.vim')
+	"lightlineがモード表示するので、デフォルトの表示を消す
+	set noshowmode
 
 " JavaScriptシンタックス
 call dein#add('othree/yajs.vim')
+
+call dein#add('derekwyatt/vim-scala')
+call dein#add('neoclide/coc.nvim',{'merged':0,'rev':'release'})
+au BufRead,BufNewFile *.sbt set filetype=scala
 
 " 文法チェックなど
 "let g:ale_completion_enabled = 1
