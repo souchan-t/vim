@@ -59,6 +59,8 @@ nnoremap <s-w> <C-w>w
 inoremap <s-Down> <C-c>v
 inoremap <C-r> <ESC>:%s/[old]/[new]/gc
 
+tnoremap <Esc> <C-\><C-n>
+
 " 検索はベリーマジックにする
 nnoremap / /\v
 
@@ -166,6 +168,9 @@ call dein#add('othree/yajs.vim')
 call dein#add('derekwyatt/vim-scala')
 call dein#add('neoclide/coc.nvim',{'merged':0,'rev':'release'})
 au BufRead,BufNewFile *.sbt set filetype=scala
+
+" TypeScriptシンタックス
+call dein#add('leafgarland/typescript-vim')
 
 " 文法チェックなど
 "let g:ale_completion_enabled = 1
