@@ -24,6 +24,8 @@ if has("autocmd")
 	filetype plugin on
 	filetype indent on
 
+	autocmd FileType javascript     setlocal sw=4 sts=4 ts=4 et
+	autocmd FileType typescript     setlocal sw=4 sts=4 ts=4 et
 	autocmd FileType python         setlocal sw=4 sts=4 ts=4 et
 	autocmd FileType ruby           setlocal sw=2 sts=2 ts=2 et
 	autocmd FileType nim            setlocal sw=2 sts=2 ts=2 et
@@ -70,7 +72,7 @@ endif
 
 "let $PATH = "~/anaconda3/bin".$PATH
 
-set runtimepath+=~/.vim/dein.vim
+set runtimepath+=~/.vim/dein/repos/github.com/Shougo/dein.vim
 
 "-------------------------------------------------------------
 call dein#begin(expand('~/.vim/dein'))
@@ -91,25 +93,26 @@ inoremap <expr><TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
 inoremap <expr><s-TAB> pumvisible() ? "\<C-p>" : "\<S-TAB>"
 
 " 補完プラグイン
-call dein#add('Shougo/deoplete.nvim')
-if !has('nvim')
-	call dein#add('roxma/nvim-yarp')
-	call dein#add('roxma/vim-hug-neovim-rpc')
-endif
-let g:deoplete#enable_at_startup = 1
-
-call dein#add('Shougo/neosnippet.vim')
-call dein#add('Shougo/neosnippet-snippets')
-imap <C-k> <Plug>(neosnippet_expand_or_jump)
-smap <C-k> <Plug>(neosnippet_expand_or_jump)
-xmap <C-k> <Plug>(neosnippet_expand_target)
-
-smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
-\ "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
-
-call dein#add('Shougo/neco-syntax')
-call dein#add('Shougo/deoplete-clangx')
-call dein#add('zchee/deoplete-jedi')
+"
+"call dein#add('Shougo/deoplete.nvim')
+"if !has('nvim')
+"	call dein#add('roxma/nvim-yarp')
+"	call dein#add('roxma/vim-hug-neovim-rpc')
+"endif
+"let g:deoplete#enable_at_startup = 1
+"
+"call dein#add('Shougo/neosnippet.vim')
+"call dein#add('Shougo/neosnippet-snippets')
+"imap <C-k> <Plug>(neosnippet_expand_or_jump)
+"smap <C-k> <Plug>(neosnippet_expand_or_jump)
+"xmap <C-k> <Plug>(neosnippet_expand_target)
+"
+"smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
+"\ "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
+"
+"call dein#add('Shougo/neco-syntax')
+"call dein#add('Shougo/deoplete-clangx')
+"call dein#add('zchee/deoplete-jedi')
 
 
 
@@ -120,7 +123,7 @@ nnoremap <silent><F3> :NERDTreeToggle<CR>
 "カラーマップのプラグイン
 call dein#add('joshdick/onedark.vim')
 let g:onedark_termcolor=256
-"colorscheme onedark
+colorscheme onedark
 
 call dein#add('tomasr/molokai')
 "colorscheme molokai
@@ -132,7 +135,6 @@ call dein#add('jdkanani/vim-material-theme')
 
 
 set termguicolors
-colorscheme onedark
 set background=dark
 
 "各種ソースの実行プラグイン
@@ -159,8 +161,8 @@ let g:closetag_filenames = '*.html,*.htm,*.jsp,*.ejs'
 
 " ステータスラインプラグイン
 call dein#add('itchyny/lightline.vim')
-	"lightlineがモード表示するので、デフォルトの表示を消す
-	set noshowmode
+"lightlineがモード表示するので、デフォルトの表示を消す
+set noshowmode
 
 " JavaScriptシンタックス
 call dein#add('othree/yajs.vim')
@@ -170,7 +172,8 @@ call dein#add('neoclide/coc.nvim',{'merged':0,'rev':'release'})
 au BufRead,BufNewFile *.sbt set filetype=scala
 
 " TypeScriptシンタックス
-"call dein#add('leafgarland/typescript-vim')
+call dein#add('leafgarland/typescript-vim')
+au BufRead,BufNewFile *.ts set filetype=typescript
 
 " 文法チェックなど
 "let g:ale_completion_enabled = 1
