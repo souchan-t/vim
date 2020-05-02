@@ -31,6 +31,7 @@ if has("autocmd")
 	autocmd FileType nim            setlocal sw=2 sts=2 ts=2 et
 	autocmd FileType scala          setlocal sw=2 sts=2 ts=2 et
 	autocmd FileType java           setlocal sw=4 sts=4 ts=4
+	autocmd FileType haskell        setlocal sw=4 sts=4 ts=4 et
 endif
 
 
@@ -134,7 +135,7 @@ colorscheme lucius
 call dein#add('jdkanani/vim-material-theme')
 
 
-set termguicolors
+"set termguicolors
 set background=dark
 
 "各種ソースの実行プラグイン
@@ -178,8 +179,8 @@ au BufRead,BufNewFile *.ts set filetype=typescript
 " 文法チェックなど
 "let g:ale_completion_enabled = 1
 call dein#add('w0rp/ale')
-let g:ale_sign_error = '×'
-let g:ale_sign_warning = '⚠'
+let g:ale_sign_error = 'X' 
+let g:ale_sign_warning = '!'
 let g:ale_sign_column_always = 1
 let g:ale_lint_on_text_change = 'never'
 let g:ale_lint_on_save = 1
